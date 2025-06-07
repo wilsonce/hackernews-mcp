@@ -124,23 +124,17 @@ def get_hackernews_top_stories_mcp():
     return get_top_commented_stories(num_stories=30)
 
 def main_cli():
-    """
-    Command-Line Interface entry point.
-    Fetches and prints the top 30 most commented Hacker News stories.
-    """
-    print("HackerNews Top Stories CLI")
-    print("Fetching top stories by comment count...")
-    top_stories = get_hackernews_top_stories_mcp()
+    '''
+    Command-line interface to run the HackerNews MCP Service.
+    This will start the MCP server.
+    '''
+    print("Starting HackerNews MCP Service via main_cli...")
+    # Import mcp_app from mcp_server.py within the same package
+    from .mcp_server import mcp_app
+    mcp_app.run()
 
-    if top_stories:
-        print(f"\n--- Top {len(top_stories)} Most Commented Hacker News Stories ---")
-        for i, story in enumerate(top_stories):
-            print(f"{i+1}. Title: {story.get('title')}")
-            print(f"   Comments: {story.get('comments_count')}")
-            print(f"   URL: {story.get('url')}")
-            print("-" * 20)
-    else:
-        print("Failed to retrieve top stories.")
-
-if __name__ == "__main__":
-    main_cli()
+# The if __name__ == "__main__": block has been removed.
+# main_cli() function definition remains for potential direct script use if needed,
+# but it won't be executed automatically when the module is imported or run
+# via python -m hackernews_mcp_service.client (which would look for a -m compatible main).
+# get_hackernews_top_stories_mcp() and other helper functions remain for the MCP tool.
