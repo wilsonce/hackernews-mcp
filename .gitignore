@@ -1,0 +1,5 @@
+.python-version
+dist/
+.venv/
+.pytest_cache/
+hackernews_mcp.egg-info/
